@@ -2,33 +2,41 @@ import { useState, useEffect } from 'react';
 import './style.css';
 
 function Aleatorios() {
-  const [consejo, setConsejo] = useState('');
+  const [consejo, setConsejo] = useState(null);
+  const [mensaje, setMensaje] = useState('');
 
+  // Función para obtener un consejo aleatorio
   const obtenerConsejo = async () => {
     try {
       const res = await fetch('https://api.adviceslip.com/advice');
       const data = await res.json();
-      setConsejo(data.slip.advice);
-
-      
-      let historial = JSON.parse(localStorage.getItem('historialConsejos')) || [];
-      historial.push(data.slip.advice);
-      localStorage.setItem('historialConsejos', JSON.stringify(historial));
-
+      setConsejo(data.slip); // Guarda el objeto completo, no solo el texto
     } catch (error) {
-      console.error('Error obteniendo consejo:', error);
+      console.error('Error al obtener consejo:', error);
+      setMensaje('Error al cargar consejo. Intenta nuevamente.');
     }
   };
 
-  const guardarFavorito = () => {
-    let favoritos = JSON.parse(localStorage.getItem('favoritosConsejos')) || [];
-    if (!favoritos.includes(consejo)) {
-      favoritos.push(consejo);
-      localStorage.setItem('favoritosConsejos', JSON.stringify(favoritos));
-      alert('¡Consejo agregado a favoritos!');
-    } else {
-      alert('Este consejo ya está en favoritos.');
+  // Función para agregar a favoritos
+  const agregarAFavoritos = () => {
+    if (!consejo) {
+      setMensaje('No hay consejo para guardar.');
+      return;
     }
+
+    const favoritos = JSON.parse(localStorage.getItem('favoritosConsejos')) || [];
+
+    const existe = favoritos.find((fav) => fav.id === consejo.id);
+
+    if (!existe) {
+      favoritos.push(consejo);
+      localStorage.setItem('favoritos', JSON.stringify(favoritos));
+      setMensaje('¡Consejo guardado en favoritos! ⭐');
+    } else {
+      setMensaje('Este consejo ya está en tus favoritos 😉');
+    }
+
+    setTimeout(() => setMensaje(''), 3000);
   };
 
   useEffect(() => {
@@ -36,14 +44,26 @@ function Aleatorios() {
   }, []);
 
   return (
-    <section className="c-aleatorios">
-      <h1>Consejo Aleatorio 🎲</h1>
-      <p className="consejo-texto">{consejo}</p>
+    <div className="c-aleatorio">
+      <h1>Consejo Aleatorio</h1>
+
+      {consejo ? (
+        <p className="consejo">"{consejo.advice}"</p>
+      ) : (
+        <p>Cargando consejo...</p>
+      )}
+
       <div className="botones">
-        <button onClick={obtenerConsejo} className="btn-nuevo">Nuevo Consejo 🔄</button>
-        <button onClick={guardarFavorito} className="btn-favorito">Agregar a Favoritos ⭐</button>
+        <button onClick={obtenerConsejo} className="btn-recargar">
+          Obtener otro consejo
+        </button>
+        <button onClick={agregarAFavoritos} className="btn-favorito">
+          Agregar a Favoritos ⭐
+        </button>
       </div>
-    </section>
+
+      {mensaje && <div className="mensaje">{mensaje}</div>}
+    </div>
   );
 }
 

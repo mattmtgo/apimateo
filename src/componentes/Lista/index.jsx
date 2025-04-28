@@ -28,13 +28,7 @@ function Lista() {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Buscar consejo"
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-        className="c-buscador"
-      />
+
       <Filtro onFiltroChange={() => {}} /> {/* Por ahora */}
       <section className="c-lista">
         {resultados.map((advice, index) => (

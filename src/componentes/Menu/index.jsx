@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './style.css';
 
 function Menu() {
   return (
     <nav className="c-menu">
-      <Link to="/" className="menu-link">Lista</Link>
-      <Link to="/aleatorios" className="menu-link">Aleatorios</Link>
-      <Link to="/favoritos" className="menu-link">Favoritos</Link>
-      <Link to="/capturados" className="menu-link">Capturados</Link>
-      <Link to="/usuarios" className="menu-link">Usuarios</Link>
-      <Link to="/historial" className="menu-link">Historial</Link>
+      <NavLink to="/" end className={({ isActive }) => isActive ? "activo" : ""}>Lista</NavLink>
+      <NavLink to="/aleatorios" className={({ isActive }) => isActive ? "activo" : ""}>Aleatorios</NavLink>
+      <NavLink to="/capturados" className={({ isActive }) => isActive ? "activo" : ""}>Capturados</NavLink>
+      <NavLink to="/favoritos" className={({ isActive }) => isActive ? "activo" : ""}>Favoritos</NavLink>
+      <NavLink to="/historial" className={({ isActive }) => isActive ? "activo" : ""}>Historial</NavLink>
+      <NavLink to="/usuarios" className={({ isActive }) => isActive ? "activo" : ""}>Usuarios</NavLink>
     </nav>
   );
 }

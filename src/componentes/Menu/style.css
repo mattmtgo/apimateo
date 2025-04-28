@@ -1,23 +1,33 @@
 .c-menu {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #4CAF50;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-  }
-  
-  .menu-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-  }
-  
-  .menu-link:hover {
-    color: #FFD700;
-  }
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+  z-index: 100;
+}
+
+.c-menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 10px;
+  transition: 0.3s;
+}
+
+.c-menu a:hover {
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.activo {
+  color: white;
+  background-color: #4CAF50;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
