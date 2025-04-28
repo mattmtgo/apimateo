@@ -1,0 +1,23 @@
+.c-menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #4CAF50;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .menu-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .menu-link:hover {
+    color: #FFD700;
+  }

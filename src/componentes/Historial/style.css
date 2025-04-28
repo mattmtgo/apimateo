@@ -1,0 +1,19 @@
+.c-historial {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .c-historial h1 {
+    margin-bottom: 20px;
+  }
+  
+  .c-historial ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .c-historial li {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+  }

@@ -1,0 +1,20 @@
+.c-filtro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .btn-filtro {
+    padding: 8px 12px;
+    background-color: #7f8c8d;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .btn-filtro:hover {
+    background-color: #34495e;
+  }
